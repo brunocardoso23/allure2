@@ -12,6 +12,7 @@ val plugins = listOf(
         "junit-xml-plugin",
         "packages-plugin",
         "screen-diff-plugin",
+        "sesuite-plugin",
         "trx-plugin",
         "xctest-plugin",
         "xray-plugin",
