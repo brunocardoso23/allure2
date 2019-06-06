@@ -57,7 +57,6 @@ dependencies {
     allurePlugin(project(path = ":junit-xml-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":packages-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":screen-diff-plugin", configuration = "allurePlugin"))
-    allurePlugin(project(path = ":sesuite-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":trx-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":xctest-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":xray-plugin", configuration = "allurePlugin"))
