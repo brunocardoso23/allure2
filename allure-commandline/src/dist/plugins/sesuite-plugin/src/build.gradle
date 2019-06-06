@@ -1,13 +1,17 @@
-repositories {
-    jcenter()
+
+apply plugin: 'java-library-distribution'
+apply from: "${gradleScriptDir}/bintray.gradle"
+
+ jar {
+    enabled = false
 }
 
-apply plugin 'java-library-distribution'
-
-jar {
-    archiveName = 'plugin.jar'
+ artifacts {
+    allurePlugin distZip
 }
 
-dependencies {
-    compileOnly('io.qameta.allureallure-plugin-api2.0-BETA8')
-}
+ bintray {
+    configurations = ['allurePlugin']
+    pkg {
+        repo = 'generic'
+    }
