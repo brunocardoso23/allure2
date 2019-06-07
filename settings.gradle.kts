@@ -6,6 +6,7 @@ include("allure-generator")
 include("allure-commandline")
 
 val plugins = listOf(
+        "sesuite-plugin",
         "behaviors-plugin",
         "custom-logo-plugin",
         "jira-plugin",
