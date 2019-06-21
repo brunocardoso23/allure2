@@ -53,7 +53,6 @@ import static io.qameta.allure.tree.TreeUtils.groupByLabels;
  *
  * @since 2.0
  */
-@SuppressWarnings({"PMD.ExcessiveImports", "PMD.UseUtilityClass"})
 public class BehaviorsPlugin extends CompositeAggregator {
 
     protected static final String BEHAVIORS = "behaviors";
@@ -61,16 +60,60 @@ public class BehaviorsPlugin extends CompositeAggregator {
     protected static final String JSON_FILE_NAME = "behaviors.json";
 
     protected static final String CSV_FILE_NAME = "behaviors.csv";
-
+    
     @SuppressWarnings("PMD.DefaultPackage")
     /* default */ static final LabelName[] LABEL_NAMES = new LabelName[]{EPIC, FEATURE, STORY};
 
     public BehaviorsPlugin() {
         super(Arrays.asList(
-                new JsonAggregator(), new CsvExportAggregator(), new WidgetAggregator()
-        ));
+                new JsonAggregator(), 
+                new CsvExportAggregator(), 
+                new WidgetAggregator(),              
+                new ComponentsAggregator("action.json", "SE Action"),
+                new ComponentsAggregator("actionPlan.json", "SE Action Plan"),
+                new ComponentsAggregator("admin.json", "SE Admin"),
+                new ComponentsAggregator("analytics.json", "SE Analytics"),
+                new ComponentsAggregator("apqp.json", "SE APQP"),
+                new ComponentsAggregator("archive.json", "SE Archive"),
+                new ComponentsAggregator("asset.json", "SE Asset"),
+                new ComponentsAggregator("audit.json", "SE Audit"),
+                new ComponentsAggregator("calibration.json", "SE Calibration"),
+                new ComponentsAggregator("competence.json", "SE Competence"),
+                new ComponentsAggregator("document.json", "SE Document"),
+                new ComponentsAggregator("fmea.json", "SE FMEA"),
+                new ComponentsAggregator("form.json", "SE Form"),
+                new ComponentsAggregator("generic.json", "SE Generic"),
+                new ComponentsAggregator("incident.json", "SE Incident"),
+                new ComponentsAggregator("inspection.json", "SE Inspection"),
+                new ComponentsAggregator("maintenance.json", "SE Maintenance"),
+                new ComponentsAggregator("msa.json", "SE MSA"),
+                new ComponentsAggregator("pdm.json", "SE PDM"),
+                new ComponentsAggregator("performance.json", "SE Performance"),
+                new ComponentsAggregator("portfolio.json", "SE Portfolio"),
+                new ComponentsAggregator("problem.json", "SE Problem"),
+                new ComponentsAggregator("process.json", "SE Process"),
+                new ComponentsAggregator("project.json", "SE Project"),
+                new ComponentsAggregator("protocol.json", "SE Protocol"),
+                new ComponentsAggregator("reports.json", "SE Reports"),
+                new ComponentsAggregator("request.json", "SE Request"),
+                new ComponentsAggregator("requirement.json", "SE Requirement"),
+                new ComponentsAggregator("risk.json", "SE Risk"),
+                new ComponentsAggregator("service.json", "SE Service"),
+                new ComponentsAggregator("spc.json", "SE SPC"),
+                new ComponentsAggregator("storeroom.json", "SE Storeroom"),
+                new ComponentsAggregator("supply.json", "SE Supply"),
+                new ComponentsAggregator("survey.json", "SE Survey"),
+                new ComponentsAggregator("task.json", "SE Task"),
+                new ComponentsAggregator("timecontrol.json", "SE Time Control"),
+                new ComponentsAggregator("training.json", "SE Training"),
+                new ComponentsAggregator("waste.json", "SE Waste"),
+                new ComponentsAggregator("workflow.json", "SE Workflow"),
+                new ComponentsAggregator("workspace.json", "SE Workspace")
+        )); 
+    
+        
     }
-
+    
     @SuppressWarnings("PMD.DefaultPackage")
     /* default */ static Tree<TestResult> getData(final List<LaunchResults> launchResults) {
 
@@ -97,7 +140,6 @@ public class BehaviorsPlugin extends CompositeAggregator {
      * Generates tree data.
      */
     private static class JsonAggregator extends CommonJsonAggregator {
-
         JsonAggregator() {
             super(JSON_FILE_NAME);
         }
@@ -106,6 +148,7 @@ public class BehaviorsPlugin extends CompositeAggregator {
         protected Tree<TestResult> getData(final List<LaunchResults> launches) {
             return BehaviorsPlugin.getData(launches);
         }
+        
     }
 
     /**
@@ -189,10 +232,11 @@ public class BehaviorsPlugin extends CompositeAggregator {
     }
 
     /**
-     * Generates widget data.
+     * 
+     * @author bruno.cardoso
+     *
      */
     protected static class WidgetAggregator extends CommonJsonAggregator {
-
         WidgetAggregator() {
             super(Constants.WIDGETS_DIR, JSON_FILE_NAME);
         }
@@ -205,7 +249,6 @@ public class BehaviorsPlugin extends CompositeAggregator {
                     .map(TestResultTreeGroup.class::cast)
                     .map(WidgetAggregator::toWidgetItem)
                     .sorted(Comparator.comparing(TreeWidgetItem::getStatistic, comparator()).reversed())
-                    .limit(10)
                     .collect(Collectors.toList());
             return new TreeWidgetData().setItems(items).setTotal(data.getChildren().size());
         }
@@ -217,5 +260,39 @@ public class BehaviorsPlugin extends CompositeAggregator {
                     .setStatistic(calculateStatisticByChildren(group));
         }
     }
+    
+    /**
+     * 
+     * @author bruno.cardoso
+     *
+     */
+    public static class ComponentsAggregator extends CommonJsonAggregator {
+    
+        private final String component;
 
+        public ComponentsAggregator(final String fileName, final String nameComponent) {
+            super(Constants.WIDGETS_DIR, fileName);
+            this.component = nameComponent;
+        }
+
+        @Override
+        public TreeWidgetData getData(final List<LaunchResults> launches) {
+            final Tree<TestResult> data = BehaviorsPlugin.getData(launches);
+            final List<TreeWidgetItem> items = data.getChildren().stream()
+                    .filter(TestResultTreeGroup.class::isInstance)
+                    .filter(line -> line.getName().equals(this.component))
+                    .map(TestResultTreeGroup.class::cast)
+                    .map(WidgetAggregator::toWidgetItem)
+                    .sorted(Comparator.comparing(TreeWidgetItem::getStatistic, comparator()).reversed())
+                    .collect(Collectors.toList());
+            return new TreeWidgetData().setItems(items).setTotal(data.getChildren().size());
+        }
+
+        private static TreeWidgetItem toWidgetItem(final TestResultTreeGroup group) {
+            return new TreeWidgetItem()
+                    .setUid(group.getUid())
+                    .setName(group.getName())
+                    .setStatistic(calculateStatisticByChildren(group));
+        }
+    }
 }

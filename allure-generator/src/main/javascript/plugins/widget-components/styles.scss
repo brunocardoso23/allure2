@@ -1,0 +1,14 @@
+.summary-widget {
+  padding: 1em 0;
+
+  &__chart > div {
+    height: 100%;
+    margin-left:30%;
+  }
+
+  &__column{
+    margin-bottom:  15px;
+    position: relative;
+    width:70%;
+  }
+}

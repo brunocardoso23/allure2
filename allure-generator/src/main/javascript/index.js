@@ -18,6 +18,8 @@ import './plugins/tab-suites';
 import './plugins/tab-graph';
 import './plugins/tab-timeline';
 
+import './plugins/tab-components';
+
 import './plugins/widget-status';
 import './plugins/widget-severity';
 import './plugins/widget-duration';
@@ -25,12 +27,12 @@ import './plugins/widget-duration-trend';
 import './plugins/widget-retry-trend';
 import './plugins/widget-categories-trend';
 
+import './plugins/widget-components';
+
 import './plugins/widget-summary';
 import './plugins/widget-history-trend';
 import './plugins/widget-suites';
-import './plugins/widget-categories';
 import './plugins/widget-environment';
-import './plugins/widget-executor';
 
 import './plugins/testresult-description';
 import './plugins/testresult-tags';

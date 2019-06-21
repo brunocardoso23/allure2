@@ -1,7 +1,0 @@
-id: SesuitePlugin
-name: SesuitePlugin
-description: Reports Specification
-jsFiles:
-  - index.js
-cssFiles:
-  - styles.css

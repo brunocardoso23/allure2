@@ -37,6 +37,10 @@
     display: flex;
   }
 
+  &__inline-line {
+    display: inline;
+  }
+
   &__column {
     width: 50%;
   }
