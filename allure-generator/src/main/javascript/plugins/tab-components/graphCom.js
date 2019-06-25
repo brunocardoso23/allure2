@@ -8,6 +8,6 @@ const Defaults = {
 export default class graphCom extends AppLayout {
 
     getContentView() {
-        return new WidgetsGridView({tabName: 'graphCom', settings:  getSettingsForWidgetGridPlugin(graphCom, Defaults)});
+        return new WidgetsGridView({tabName: 'graphCom', settings:  getSettingsForWidgetGridPlugin('graphCom', Defaults)});
     }
 }
