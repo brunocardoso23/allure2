@@ -10,7 +10,7 @@ import {SEARCH_QUERY_KEY} from '../node-search/NodeSearchView';
 
 @className('tree')
 @behavior('TooltipBehavior', {position: 'bottom'})
-class TreeView extends View {
+class TreeViewJS extends View {
     template = template;
 
     cachedQuery = '';
@@ -36,7 +36,6 @@ class TreeView extends View {
 
     applyFilters() {
         const filter = byAttachment();
-
         const sortSettings = this.settings.getTreeSorting();
         const sorter = getComparator(sortSettings);
         this.collection.applyFilterAndSorting(filter, sorter);
@@ -189,4 +188,4 @@ class TreeView extends View {
     }
 }
 
-export default TreeView;
+export default TreeViewJS;

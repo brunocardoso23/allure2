@@ -9,6 +9,7 @@ import MarksToggleView from '../marks-toggle/MarksToggleView';
 import TreeViewJS from '../tree/TreeViewJS';
 import {Model} from 'backbone';
 import {getSettingsForTreePlugin} from '../../utils/settingsFactory';
+import {fetchAndShow} from '../../utils/loading';
 
 @className('tree')
 @behavior('TooltipBehavior', {position: 'bottom'})
@@ -40,7 +41,7 @@ class TreeViewContainer extends View {
     }
 
     onRender() {
-        this.showChildView('content', new TreeViewJS({
+        fetchAndShow(this, 'content', this.collection, new TreeViewJS({
             state: this.state,
             routeState: this.routeState,
             tabName: this.tabName,
