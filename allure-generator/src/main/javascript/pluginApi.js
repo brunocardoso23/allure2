@@ -1,5 +1,6 @@
 import pluginsRegistry from './utils/pluginsRegistry';
 import TreeLayout from './layouts/tree/TreeLayout';
+import TreeLayoutJS from './layouts/tree/TreeLayoutJS';
 import AppLayout from './layouts/application/AppLayout';
 import WidgetStatusView from './components/widget-status/WidgetStatusView';
 import {getSettingsForPlugin} from './utils/settingsFactory';
@@ -14,6 +15,7 @@ window.allure = {
     components: {
         AppLayout: AppLayout,
         TreeLayout: TreeLayout,
-        WidgetStatusView: WidgetStatusView
+        WidgetStatusView: WidgetStatusView,
+        TreeLayoutJS: TreeLayoutJS
     }
 };

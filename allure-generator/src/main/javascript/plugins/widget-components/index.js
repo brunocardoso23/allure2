@@ -15,6 +15,7 @@ import GenericChartView from './GenericChartView';
 import IncidentChartView from './IncidentChartView';
 import InspectionChartView from './InspectionChartView';
 import MaintenanceChartView from './MaintenanceChartView';
+import MeetingChartView from './MeetingChartView';
 import MsaChartView from './MsaChartView';
 import PdmChartView from './PdmChartView';
 import PerformanceChartView from './PerformanceChartView';
@@ -72,6 +73,8 @@ allure.api.addWidget('graphCom', 'incident', IncidentChartView);
 allure.api.addWidget('graphCom', 'inspection', InspectionChartView);
 
 allure.api.addWidget('graphCom', 'maintenance', MaintenanceChartView);
+
+allure.api.addWidget('graphCom', 'meeting', MeetingChartView);
 
 allure.api.addWidget('graphCom', 'msa', MsaChartView);
 

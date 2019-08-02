@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import {makeArray} from '../../utils/arrays';
+
 function byStatuses(statuses) {
     return (child) => {
         if (child.children) {
@@ -26,6 +29,36 @@ function byText(text) {
     };
 }
 
+function byAttachment(){
+    return (child) => {
+
+        if(typeof child.children !== 'undefined'){
+            return true;
+        }
+        var after = '';
+        $.ajax({
+                type: 'GET',
+                url: 'data/test-cases/' + child.uid + '.json',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function(json) {
+                    after = makeArray(json.afterStages);
+                }
+            });
+
+            for(var result in after){
+                for(var attachments in after[result].attachments){
+                    if(after[result].attachments[attachments]['name'] === 'JavaScript Errors'){
+                        return true;
+                    } 
+                }
+            }
+
+            return false;  
+    };
+}
+
 function byMark(marks) {
     return (child) => {
         if (child.children) {
@@ -34,6 +67,7 @@ function byMark(marks) {
         return (!marks.newFailed || child.newFailed) &&
                (!marks.flaky || child.flaky);
     };
+
 }
 
 function mix(...filters) {
@@ -47,4 +81,4 @@ function mix(...filters) {
 }
 
 
-export {byStatuses, byDuration, byText, byMark, mix};
+export {byStatuses, byDuration, byText, byMark, mix, byAttachment};

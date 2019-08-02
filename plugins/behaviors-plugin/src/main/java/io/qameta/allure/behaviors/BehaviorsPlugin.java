@@ -108,7 +108,8 @@ public class BehaviorsPlugin extends CompositeAggregator {
                 new ComponentsAggregator("training.json", "SE Training"),
                 new ComponentsAggregator("waste.json", "SE Waste"),
                 new ComponentsAggregator("workflow.json", "SE Workflow"),
-                new ComponentsAggregator("workspace.json", "SE Workspace")
+                new ComponentsAggregator("workspace.json", "SE Workspace"),
+                new ComponentsAggregator("meeting.json", "SE Meeting")
         )); 
     
         

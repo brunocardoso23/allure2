@@ -19,7 +19,8 @@ import './plugins/tab-graph';
 import './plugins/tab-timeline';
 
 import './plugins/tab-components';
-
+import './plugins/tab-jserror';
+import './plugins/tab-interface';
 import './plugins/widget-status';
 import './plugins/widget-severity';
 import './plugins/widget-duration';
@@ -28,7 +29,8 @@ import './plugins/widget-retry-trend';
 import './plugins/widget-categories-trend';
 
 import './plugins/widget-components';
-
+import './plugins/widget-jserror';
+import './plugins/widget-interface';
 import './plugins/widget-summary';
 import './plugins/widget-history-trend';
 import './plugins/widget-suites';
