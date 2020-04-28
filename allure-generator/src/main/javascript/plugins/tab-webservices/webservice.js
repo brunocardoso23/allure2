@@ -1,23 +1,22 @@
 import AppLayout from '../../layouts/application/AppLayout';
 import {View} from 'backbone.marionette';
 
-export default class interfaces extends AppLayout {
+export default class webservice extends AppLayout {
 
     getContentView() {
-        return new interfacesView();
+        return new webserviceView();
     }
 }
 
 const template = function () {
    
     var url = '';
-    
     var split = window.location.href.split('/');
 
     if(split[4] === 'dev'){
-        url = 'http://norris.softexpert.com:8080/view/Interface%20DEV/';
+        url = 'http://norris.softexpert.com:8080/view/Web%20Service%20Dev/';
     }else{
-        url = 'http://norris.softexpert.com:8080/view/Interface%20Master/';
+        url = 'http://norris.softexpert.com:8080/view/Web%20Service%20Master//';
     }
 
     var html = '<iframe src="'+url+'" style="position:absolute;" width="100%" marginwidth="0" height="100%" marginheight="0" align="top" scrolling="no" frameborder="0" hspace="0" vspace="0"> </iframe>';
@@ -25,7 +24,7 @@ const template = function () {
     return html;
 };
 
-var interfacesView =View.extend({
+var webserviceView =View.extend({
     template: template,
 
     render: function () {
