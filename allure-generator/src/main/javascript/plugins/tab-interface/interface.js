@@ -14,7 +14,7 @@ const template = function () {
     
     var split = window.location.href.split('/');
 
-    if(split[4] === 'dev'){
+    if(split[5] === 'dev'){
         url = 'http://norris.softexpert.com:8080/view/Interface%20DEV/';
     }else{
         url = 'http://norris.softexpert.com:8080/view/Interface%20Master/';

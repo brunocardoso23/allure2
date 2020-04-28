@@ -13,7 +13,7 @@ const template = function () {
     var url = '';
     var split = window.location.href.split('/');
 
-    if(split[4] === 'dev'){
+    if(split[5] === 'dev'){
         url = 'http://norris.softexpert.com:8080/view/Web%20Service%20Dev/';
     }else{
         url = 'http://norris.softexpert.com:8080/view/Web%20Service%20Master//';
